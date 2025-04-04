@@ -39,7 +39,7 @@ const ContactUs = () => {
           <p className="text-gray-600 mt-4 text-2xl">
             Have questions? Feel free to reach out, and we’ll get back to you as soon as possible.
           </p>
-          <img src="/images/contact.jpeg" alt="Contact Us" />
+         
         </div>
 
         {/* Form Section */}

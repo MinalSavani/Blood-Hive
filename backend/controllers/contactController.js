@@ -83,7 +83,7 @@ const sendContactEmail = async (req, res) => {
     `;
 
     const mailOptions = {
-      from: process.env.EMAIL_USER,
+      from:`"Blood Hive" <${process.env.SMTP_USER}>`,
       to: email,
       subject: "Thank You for Contacting Us! ❤️",
       html: emailHtmlContent, // ✅ Send HTML instead of plain text

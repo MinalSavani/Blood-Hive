@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const NewDonar = () => {
-  // Step 1: Set up state for form fields
   const [formData, setFormData] = useState({
     name: "",
     bloodType: "",
@@ -11,14 +10,21 @@ const NewDonar = () => {
     lastDonationDate: "",
   });
 
-  // Step 2: Update state as user types
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Step 3: Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate contact number
+    if (!/^\d{10}$/.test(formData.contact)) {
+      alert("Enter a valid 10-digit contact number.");
+      return;
+    }
+
     try {
       const res = await fetch("http://localhost:5000/donors", {
         method: "POST",
@@ -27,7 +33,7 @@ const NewDonar = () => {
         },
         body: JSON.stringify(formData),
       });
-  
+
       if (res.ok) {
         alert("Donor added successfully!");
         setFormData({
@@ -36,11 +42,9 @@ const NewDonar = () => {
           contact: "",
           bloodType: "",
           lastDonationDate: "",
-          disease: "",
         });
-  
-        // Navigate back to donors list after adding
-        window.location.href = "/admin/donars";  // Redirect to donors page
+
+        navigate("/admin/donars"); // ✅ Navigate properly
       } else {
         alert("Error adding donor.");
       }

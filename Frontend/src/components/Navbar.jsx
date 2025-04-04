@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link as ScrollLink } from 'react-scroll';
-import { Link } from 'react-router-dom'; // ✅ Import Link for page navigation
-import { FiMenu, FiX } from 'react-icons/fi'; // Icons for menu toggle
+import { Link } from 'react-router-dom';
+import { FiMenu, FiX } from 'react-icons/fi';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false); // State to manage menu open/close
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <nav className="bg-gray-100 shadow-md fixed w-full top-0 z-50">
@@ -17,33 +17,37 @@ const Navbar = () => {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-8 text-lg font-medium">
-          {["home", "featured", "contact"].map((section) => (
-            <ScrollLink
-              key={section}
-              to={section}
-              smooth={true}
-              duration={800}
-              className="cursor-pointer hover:text-red-600 transition duration-300"
-              activeClass="text-red-700 font-bold"
-            >
-              {section.charAt(0).toUpperCase() + section.slice(1)}
-            </ScrollLink>
-          ))}
+          <ScrollLink to="home" smooth={true} duration={800} className="cursor-pointer hover:text-red-600 transition duration-300">
+            Home
+          </ScrollLink>
 
-          {/* ✅ Blood Bank should use <Link> to navigate instead of ScrollLink */}
-          <Link
-            to="/bloodbank"
-            className="cursor-pointer hover:text-red-600 transition duration-300"
-          >
+         
+          <Link to="/featured" className="hover:text-red-600 transition duration-300">
+            About Us
+          </Link>
+
+          <Link to="/contactus" className="hover:text-red-600 transition duration-300">
+            Contact Us
+          </Link>
+
+          <Link to="/bloodbank" className="hover:text-red-600 transition duration-300">
             Blood Bank
           </Link>
+
+          
+          <Link to="/bloodreq" className="hover:text-red-600 transition duration-300" 
+           >
+                Blood Request
+              </Link>
         </div>
 
+
+
+
+          
+
         {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-3xl text-red-700"
-          onClick={() => setIsOpen(!isOpen)}
-        >
+        <button className="md:hidden text-3xl text-red-700" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <FiX /> : <FiMenu />}
         </button>
       </div>
@@ -52,30 +56,40 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden bg-gray-100 shadow-lg py-5 absolute top-[80px] left-0 w-full">
           <ul className="flex flex-col space-y-4 text-center">
-            {["home", "featured", "contact"].map((section) => (
-              <li key={section}>
-                <ScrollLink
-                  to={section}
-                  smooth={true}
-                  duration={800}
-                  className="block text-lg font-medium text-gray-800 hover:text-red-600 transition duration-300"
-                  onClick={() => setIsOpen(false)} // Close menu on click
-                >
-                  {section.charAt(0).toUpperCase() + section.slice(1)}
-                </ScrollLink>
-              </li>
-            ))}
-
-            {/* ✅ Mobile menu also needs to navigate properly to Blood Bank */}
             <li>
-              <Link
-                to="/bloodbank"
-                className="block text-lg font-medium text-gray-800 hover:text-red-600 transition duration-300"
-                onClick={() => setIsOpen(false)} // Close menu on click
-              >
+              <ScrollLink to="home" smooth={true} duration={800} className="block text-lg font-medium text-gray-800 hover:text-red-600 transition duration-300" onClick={() => setIsOpen(false)}>
+                Home
+              </ScrollLink>
+            </li>
+
+           
+            <li>
+              <Link to="/services" className="block text-lg font-medium text-gray-800 hover:text-red-600 transition duration-300" onClick={() => setIsOpen(false)}>
+                Services
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/contactus" className="block text-lg font-medium text-gray-800 hover:text-red-600 transition duration-300" onClick={() => setIsOpen(false)}>
+                Contact
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/bloodbank" className="block text-lg font-medium text-gray-800 hover:text-red-600 transition duration-300" onClick={() => setIsOpen(false)}>
                 Blood Bank
               </Link>
             </li>
+
+            <li>
+            <Link to="/bloodreq" className="block text-lg font-medium text-gray-800 hover:text-red-600 transition duration-300" onClick={() => setIsOpen(false)}>
+                Blood Request
+              </Link>
+
+
+            </li>
+
+           
           </ul>
         </div>
       )}

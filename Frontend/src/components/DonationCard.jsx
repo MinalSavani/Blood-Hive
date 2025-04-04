@@ -18,8 +18,6 @@ const DonationCard = ({title,image,icon,description}) => {
             
       </div>
       </div>
-
-      {/* // Text content */}
       <div className='flex flex-col mt-5 items-center text-center  px-5'>
                 <h3>
                     {title}
@@ -28,9 +26,7 @@ const DonationCard = ({title,image,icon,description}) => {
                     {description}
                 </p>
 
-                <button className='mt-2 px-10 py-2 bg-white text-red-500 font-semibold rounded-md shadow-md hover:bg-gray-200 transition'>
-                    Read More
-                </button>
+               
       </div>
 
     </div>

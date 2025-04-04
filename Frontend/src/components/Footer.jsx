@@ -24,17 +24,21 @@ const Footer = () => {
                 
 
                 <li>
-                  <Link className=" hover:text-red-500 transition duration-300">
-                  Home
-                  </Link>
+                 <Link to="/"
+                 className=" hover:text-red-500 transition duration-300"
+                 >
+                 Home
+                 </Link>
                 </li>
                 <li>
-                  <Link className=" hover:text-red-500 transition duration-300">
+                  <Link to="/featured"
+                   className=" hover:text-red-500 transition duration-300">
                   About Us
                   </Link>
                 </li>
                 <li>
-                  <Link className=" hover:text-red-500 transition duration-300">
+                  <Link to="/contactus"
+                  className=" hover:text-red-500 transition duration-300">
                   Contact Us
                   </Link>
                 </li>

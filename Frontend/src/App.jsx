@@ -1,17 +1,25 @@
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+
+import NewVolunteer from "./pages/NewVolunteer";
+
 import Admin from "./pages/Admin";
 import "./App.css";
 import Donars from "./pages/Donars";
 import Prospects from "./pages/Propsects";
 import Menu from "./components/Menu";
 import ProspectAdd from "./pages/ProspectAdd";
-import Donaradd from "./pages/Donaradd";
+import Volunteer from "./pages/Volunteer";
 import NewDonar from "./pages/NewDonar";
 import Register from "./pages/Register";
 import EditDonor from "./pages/EditDonar";
-import BloodBank from "./pages/BloodBank";  // ✅ Import BloodBank Page
+import BloodBank from "./pages/BloodBank"; 
+import VolunteerReg from "./pages/VolunteerReg"; 
+import ContactUs from "./components/Services/ContactUs";
+import Featured from "./components/Featured";
+import AdminBloodRequests from "./pages/AdminBloodRequest";
+import  BloodRequest from "./pages/BloodRequest";
 
 function App() {
   const Layout = () => {
@@ -45,17 +53,38 @@ function App() {
       element: <Register />,
     },
     {
+    path:"/contactus",
+    element:<ContactUs/>
+    },
+    {
+    path:"/featured",
+    element:<Featured/>
+    },
+
+    {
+      path:"/volunteer",
+      element:<VolunteerReg/>
+    },
+
+    {
+      path:"/bloodreq",
+      element:<BloodRequest/>
+    },
+    {
       path: "/admin",
       element: <Layout />,
       children: [
         {
           path: "/admin",
-          element: <Admin />,
+          element: <AdminBloodRequests />,
         },
         {
           path: "/admin/donars",
           element: <Donars />,
         },
+        {
+        path:"/admin/volunteers",
+        element:<Volunteer/>},
         {
           path: "/admin/prospects",
           element: <Prospects />,
@@ -65,13 +94,14 @@ function App() {
           element: <ProspectAdd />,
         },
         {
+          path: "/admin/newvolunteer",
+          element: <NewVolunteer />, 
+        },
+        {
           path: "/admin/newdonar",
           element: <NewDonar />,
         },
-        {
-          path: "/admin/donars/:id",
-          element: <Donaradd />,
-        },
+       
         {
           path: "/admin/donars/:id/edit",
           element: <EditDonor />,

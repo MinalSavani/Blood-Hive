@@ -8,7 +8,7 @@ export default function Register() {
     email: "",
     phone: "",
     bloodType: "",
-    address: "",
+   location:"",
     age: "",
     weight: "",
     role: "donor",
@@ -27,7 +27,7 @@ export default function Register() {
     }
 
     try {
-      const res = await axios.post("http://localhost:5000/register", formData); 
+      const res = await axios.post("http://localhost:5000/donors", formData); 
       alert(res.data.message); // Show success message
     } catch (error) {
       console.error("Registration Error:", error.response?.data?.error || error.message);
@@ -44,12 +44,22 @@ export default function Register() {
         <input type="email" name="email" placeholder="Email" required className="w-full p-2 mb-3 border rounded" onChange={handleChange} />
         <input type="tel" name="phone" placeholder="Phone Number" required className="w-full p-2 mb-3 border rounded" onChange={handleChange} />
         <input type="text" name="bloodType" placeholder="Blood Type (if donor)" className="w-full p-2 mb-3 border rounded" onChange={handleChange} />
-        <input type="text" name="address" placeholder="Address" required className="w-full p-2 mb-3 border rounded" onChange={handleChange} />
+
+        <input
+  type="text"
+  name="location"
+  placeholder="Location"
+  required
+  className="w-full p-2 mb-3 border rounded"
+  value={formData.location}   // <-- Add this
+  onChange={handleChange}
+/>
+
         <input type="number" name="age" placeholder="Age" required className="w-full p-2 mb-3 border rounded" onChange={handleChange} />
         <input type="number" name="weight" placeholder="Weight (kg)" required className="w-full p-2 mb-3 border rounded" onChange={handleChange} />
         <select name="role" className="w-full p-2 mb-3 border rounded" onChange={handleChange}>
           <option value="donor">Donor</option>
-          <option value="volunteer">Volunteer</option>
+          
         </select>
         <button type="submit" className="w-full p-2 bg-red-600 text-white rounded hover:bg-red-700 transition">Register</button>
       </form>
